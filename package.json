@@ -1,0 +1,11 @@
+{
+  "name": "bill-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "latest"
+  },
+  "dependencies": {}
+}

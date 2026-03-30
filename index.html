@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bill Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for English and Sinhala -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <span class="logo-icon">📄</span>
+                <h1>SmartBill</h1>
+            </div>
+            <div class="header-actions">
+                <button id="add-row" class="btn btn-secondary">+ Add Item</button>
+                <button id="reset-bill" class="btn btn-danger">Reset</button>
+            </div>
+        </header>
+
+        <!-- Bill Paper Area -->
+        <main class="bill-paper" id="bill-area">
+            <div class="bill-header">
+                <div class="bill-title-row">
+                    <h2 class="memo-title">CASH MEMO</h2>
+                    <div class="memo-id">#<span id="bill-number">085</span></div>
+                </div>
+                
+                <div class="bill-info">
+                    <div class="info-group">
+                        <label>DATE:</label>
+                        <input type="date" id="bill-date">
+                    </div>
+                </div>
+                
+                <div class="bill-info">
+                    <div class="info-group">
+                        <label>SOLD TO:</label>
+                        <input type="text" id="bill-to" placeholder="Customer Name">
+                    </div>
+                </div>
+                
+                <div class="meal-selector">
+                    <button type="button" id="set-diner" class="btn-meal">Diner (200/=)</button>
+                    <button type="button" id="set-lunch" class="btn-meal">Lunch (250/=)</button>
+                </div>
+            </div>
+
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th class="col-desc">Description</th>
+                        <th class="col-rate">Rate</th>
+                        <th class="col-qty">Qty</th>
+                        <th class="col-amount">Amount</th>
+                        <th class="col-action"></th>
+                    </tr>
+                </thead>
+                <tbody id="items-body">
+                    <!-- Rows will be added here -->
+                </tbody>
+            </table>
+
+            <div class="bill-footer">
+                <div class="footer-bottom">
+                    <div class="remarks-box">
+                        <label>REMARKS:</label>
+                        <textarea id="bill-remarks" rows="2" placeholder="Notes..."></textarea>
+                    </div>
+                    <div class="totals-box">
+                        <div class="total-row">
+                            <span>Total</span>
+                            <span id="sub-total">0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Discount</span>
+                            <input type="number" id="discount-val" value="0" step="0.01">
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Grand Total</span>
+                            <span id="grand-total-val">0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="thank-you-row">
+                    <p>Thank You!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Action Button for Mobile -->
+        <div class="fab-container">
+            <button id="print-bill" class="btn-fab" title="Print/Save Bill">
+                <span>Print Bill</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
+</html>
